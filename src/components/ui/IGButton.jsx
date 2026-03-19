@@ -4,6 +4,11 @@ import { openIGDM } from "../../utils/instagram";
 /**
  * IGButton — Instagram-branded CTA button.
  *
+ * On click:
+ *   1. Copies the pre-filled message to clipboard (silently)
+ *   2. Opens ig.me/m/webgrowth.in — works on ALL devices
+ *   3. Shows a brief "Message copied! Just paste & send 📋" hint
+ *
  * Props:
  *   messageKey — key from MESSAGES in instagram.js (default "general")
  *   children   — label
@@ -11,7 +16,7 @@ import { openIGDM } from "../../utils/instagram";
  *   variant    — "gradient" | "outline" | "ghost"
  *   style      — extra styles
  *   hint       — optional subtext below button
- *   href       — fallback href (still fires clipboard+toast on click)
+ *   href       — ignored (kept for API compat)
  */
 
 const IG_ICON = (size = 16) => (
@@ -29,9 +34,10 @@ export default function IGButton({
   variant = "gradient",
   style = {},
   hint,
-  href,
+  href: _href,
 }) {
-  const [hov, setHov] = useState(false);
+  const [hov, setHov]     = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const pad   = size === "sm" ? "9px 18px" : size === "lg" ? "18px 52px" : "13px 28px";
   const fSize = size === "sm" ? 10 : size === "lg" ? 12 : 11;
@@ -64,15 +70,19 @@ export default function IGButton({
     },
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    openIGDM(messageKey);
+    const didCopy = await openIGDM(messageKey);
+    if (didCopy) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3500);
+    }
   };
 
   return (
     <div style={{ display:"inline-flex", flexDirection:"column", alignItems:"center", gap:8 }}>
       <a
-        href={href || "https://ig.me/m/webgrowth.in"}
+        href={`https://ig.me/m/webgrowth.in`}
         onClick={handleClick}
         style={{ ...base, ...variants[variant], ...style }}
         onMouseEnter={() => setHov(true)}
@@ -81,7 +91,21 @@ export default function IGButton({
         {IG_ICON(iconS)}
         {children}
       </a>
-      {hint && (
+
+      {/* Clipboard toast */}
+      {copied && (
+        <span style={{
+          fontFamily:"var(--sans)", fontSize:10, color:"#dc2743",
+          letterSpacing:"0.08em", textAlign:"center", lineHeight:1.5,
+          background:"rgba(220,39,67,.08)", border:"1px solid rgba(220,39,67,.2)",
+          padding:"4px 10px", borderRadius:4,
+        }}>
+          📋 Message copied — just paste &amp; send!
+        </span>
+      )}
+
+      {/* Static hint (shown when not copying) */}
+      {hint && !copied && (
         <span style={{ fontFamily:"var(--sans)", fontSize:10, color:"var(--muted)", letterSpacing:"0.08em", textAlign:"center", lineHeight:1.5 }}>
           {hint}
         </span>

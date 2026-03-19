@@ -2,9 +2,17 @@
  * Instagram Lead-Gen Utilities
  * Primary channel: @webgrowth.in
  *
- * Pre-filled text trick:
- * instagram.com/direct/new/?text=<encoded> opens the DM composer
- * with the message already typed in — user just hits Send.
+ * How it works:
+ * 1. On click, we COPY the pre-filled message to clipboard (silent, one shot).
+ * 2. We open https://ig.me/m/<handle> — this reliably opens the Instagram DM
+ *    composer directed at your account on ALL devices (mobile app + desktop web).
+ * 3. The user just pastes the message (already copied) and hits Send.
+ *
+ * Why not instagram.com/direct/new/?text=... ?
+ * That URL is an internal Instagram web route. It breaks on mobile (the app
+ * ignores the ?text= param) and often requires the user to already be logged
+ * in on the browser. ig.me/m/<handle> is the official deep-link that always
+ * opens the DM composer in the app.
  */
 
 const HANDLE  = "webgrowth.in";
@@ -13,7 +21,10 @@ const PROFILE = `https://instagram.com/${HANDLE}`;
 export const IG_HANDLE  = HANDLE;
 export const IG_PROFILE = PROFILE;
 
-// ─── The message that gets pre-typed ─────────────────────────────────────────
+// ─── The DM URL (always reliable) ────────────────────────────────────────────
+const DM_BASE = `https://ig.me/m/${HANDLE}`;
+
+// ─── The message that gets pre-copied to clipboard ────────────────────────────
 const SITE_LINK = "https://spice-heaven-seven.vercel.app/";
 
 export const MESSAGES = {
@@ -26,34 +37,41 @@ export const MESSAGES = {
   general:     `Hey I want a website for my business like this ${SITE_LINK}`,
 };
 
-// ─── URL builder — text pre-filled in Instagram DM composer ──────────────────
-const dmUrl = (messageKey = "general") => {
-  const text = MESSAGES[messageKey] || MESSAGES.general;
-  return `https://www.instagram.com/direct/new/?text=${encodeURIComponent(text)}`;
-};
-
 // ─── openIGDM ─────────────────────────────────────────────────────────────────
 /**
- * Opens Instagram DM composer with the message already typed.
- * User just presses Send — zero effort.
+ * 1. Copies the pre-filled message silently to clipboard.
+ * 2. Opens ig.me/m/<handle> — works on mobile app and desktop web.
+ * Returns true if clipboard copy succeeded (so UI can show a "message copied!" toast).
  */
-export function openIGDM(messageKey = "general") {
-  window.open(dmUrl(messageKey), "_blank", "noreferrer");
+export async function openIGDM(messageKey = "general") {
+  const text = MESSAGES[messageKey] || MESSAGES.general;
+
+  // Try to copy message to clipboard (non-blocking)
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch (_) {
+    // Clipboard denied — silently skip; still open the DM
+  }
+
+  window.open(DM_BASE, "_blank", "noreferrer");
+  return copied;
 }
 
 // ─── ig.* URL helpers (for href= attributes) ──────────────────────────────────
 export const ig = {
-  dm:          () => dmUrl("general"),
+  dm:          () => DM_BASE,
   profile:     () => PROFILE,
-  getWebsite:  () => dmUrl("getWebsite"),
-  bookTable:   () => dmUrl("bookTable"),
-  requestDemo: () => dmUrl("requestDemo"),
-  adminPanel:  () => dmUrl("adminPanel"),
-  placeOrder:  () => dmUrl("placeOrder"),
-  claimSlot:   () => dmUrl("claimSlot"),
-  general:     () => dmUrl("general"),
+  getWebsite:  () => DM_BASE,
+  bookTable:   () => DM_BASE,
+  requestDemo: () => DM_BASE,
+  adminPanel:  () => DM_BASE,
+  placeOrder:  () => DM_BASE,
+  claimSlot:   () => DM_BASE,
+  general:     () => DM_BASE,
 };
 
-// Legacy alias
+// Legacy aliases
 export const DM_HINT = MESSAGES;
-export const IG_DM   = dmUrl("general");
+export const IG_DM   = DM_BASE;
