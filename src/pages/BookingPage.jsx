@@ -54,7 +54,7 @@ export default function BookingPage() {
           <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--muted)", maxWidth: 480, margin: "0 auto 20px" }}>
             Reserve in minutes. We confirm within 2 hours with a personal message.
           </p>
-          <IGButton href={ig.bookTable()} size="sm" variant="outline" hint="Contact via Instagram to get your website">
+          <IGButton messageKey="requestDemo" size="sm" variant="outline" hint="Contact via Instagram to get your website">
             Or DM us on Instagram
           </IGButton>
         </div>

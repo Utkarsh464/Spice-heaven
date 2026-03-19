@@ -1,6 +1,7 @@
 import { useApp } from "../../context/AppContext";
 import { formatPrice } from "../../utils/helpers";
-import { ig, DM_HINT, IG_HANDLE } from "../../utils/instagram";
+import { ig, DM_HINT, IG_HANDLE, openIGDM } from "../../utils/instagram";
+import { triggerIGToast } from "../ui/IGToast";
 
 const Icon = ({ d, size=18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -26,13 +27,13 @@ export default function CartDrawer() {
 
   const handleIGOrder = () => {
     if (!cartItems.length) return;
-    // Record order in admin
     addOrder(
       cartItems.map(c => ({ n: c.item.n, qty: c.qty, p: c.item.p })),
       cartTotal,
       "Instagram"
     );
-    window.open(ig.placeOrder(), "_blank", "noreferrer");
+    openIGDM("placeOrder");
+    triggerIGToast();
     clearCart();
     setCartOpen(false);
   };

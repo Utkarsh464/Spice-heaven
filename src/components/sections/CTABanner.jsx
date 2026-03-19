@@ -24,7 +24,7 @@ export default function CTABanner() {
         <div className="rv d3" style={{ display:"flex", gap:16, justifyContent:"center", flexWrap:"wrap", alignItems:"flex-start" }}>
           <Btn onClick={() => navigate("Booking")} style={{ padding:"17px 56px" }}>Book Your Table</Btn>
           <IGButton
-            href={ig.dm()}
+            messageKey="getWebsite"
             size="md"
             variant="gradient"
             hint="Contact via Instagram to get your website"

@@ -51,7 +51,12 @@ export default function HeroSection() {
 
             {/* Instagram lead CTA */}
             <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-              <IGButton href={ig.getWebsite()} size="md" variant="gradient" hint="Contact via Instagram to get your website">
+              <IGButton
+                messageKey="getWebsite"
+                size="md"
+                variant="gradient"
+                hint="Contact via Instagram to get your website"
+              >
                 Get a Website Like This
               </IGButton>
             </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ig, IG_HANDLE } from "../../utils/instagram";
+import { ig, IG_HANDLE, openIGDM } from "../../utils/instagram";
+import { triggerIGToast } from "./IGToast";
 
 /**
  * IGLeadStrip
@@ -68,6 +69,7 @@ export default function IGLeadStrip() {
         href={ig.getWebsite()}
         target="_blank"
         rel="noreferrer"
+        onClick={(e) => { e.preventDefault(); openIGDM("getWebsite"); triggerIGToast(); }}
         style={{
           fontFamily: "var(--sans)",
           fontSize: 10,

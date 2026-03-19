@@ -12,6 +12,7 @@ import CartDrawer from "./components/cart/CartDrawer";
 import LoadingScreen from "./components/ui/LoadingScreen";
 import IGFloat       from "./components/ui/IGFloat";
 import IGLeadStrip   from "./components/ui/IGLeadStrip";
+import IGToast       from "./components/ui/IGToast";
 
 // Public pages
 import HomePage     from "./pages/HomePage";
@@ -74,6 +75,7 @@ function AppInner() {
       <main><Page /></main>
       <Footer />
       <IGFloat />
+      <IGToast />
     </>
   );
 }
