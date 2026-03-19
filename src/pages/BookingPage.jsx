@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
+import { useApp } from "../context/AppContext";
 import Tag from "../components/ui/Tag";
 import GoldRule from "../components/ui/GoldRule";
 import Btn from "../components/ui/Btn";
@@ -22,6 +23,7 @@ const LABEL_STYLE = {
 
 export default function BookingPage() {
   useReveal();
+  const { addBooking } = useApp();
   const [form, setForm] = useState(EMPTY_FORM);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,11 @@ export default function BookingPage() {
   const submit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => { setLoading(false); setDone(true); }, 2000);
+    setTimeout(() => {
+      addBooking({ name: form.name, email: form.email, phone: form.phone, guests: parseInt(form.guests), date: form.date, time: form.time, occasion: form.occasion || "None", notes: form.notes });
+      setLoading(false);
+      setDone(true);
+    }, 1800);
   };
 
   return (

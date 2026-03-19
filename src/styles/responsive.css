@@ -2,6 +2,15 @@
    SPICE HAVEN — Responsive / Media Queries
    ============================================================ */
 
+/* ── Admin panel ── */
+@media (max-width: 1024px) {
+  .admin-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .admin-two-col    { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 768px) {
+  .admin-stats-grid { grid-template-columns: 1fr !important; }
+}
+
 /* ── Tablet (≤ 900px) ── */
 @media (max-width: 900px) {
   .desktop-nav { display: none !important; }

@@ -224,3 +224,67 @@ Images sourced from [Unsplash](https://unsplash.com) — free for commercial use
 ---
 
 *Made with ♥ — a ₹50,000+ product, delivered.*
+
+---
+
+## 🆕 v2 Upgrade — New Features
+
+### 1. Full Cart System (`src/components/cart/CartDrawer.jsx`)
+- Slide-in drawer from the right — opens automatically on Add to Cart
+- Per-item quantity controls (+ / −) with live subtotal
+- Tax calculation (5%) + grand total
+- Empty cart state with friendly CTA
+- **"Place Order via WhatsApp"** — builds a prefilled message with all items + quantities + total, records the order in the admin panel, then opens WhatsApp
+- "Book a Table Instead" quick-link
+
+### 2. Admin Panel (`src/pages/admin/`)
+
+**AdminLogin.jsx**
+- Clean, branded login page
+- Dummy auth: `admin` / `spice2024`
+- Accessible via footer "Admin Login" link
+- Shows demo credentials hint
+
+**AdminDashboard.jsx**
+- 4-tab sidebar: Overview · Bookings · Orders · Menu
+- **Overview:** Live stat cards (revenue, bookings, pending orders, expected guests), recent bookings + recent orders side-by-side
+- **Bookings:** Full table with filter by status, Confirm / Cancel actions — all bookings from the real booking form appear here instantly
+- **Orders:** Card-based order list with filter, "Mark Preparing" / "Mark Served" status cycling — real WhatsApp orders from the cart appear here
+- **Menu:** Read-only menu browser by category
+
+### 3. Navbar Upgrades (`src/components/layout/Navbar.jsx`)
+- Cart icon button with live badge count
+- Admin panel shortcut (shows only when logged in)
+- Mobile cart button in hamburger menu
+
+### 4. Cart-Aware AppContext (`src/context/AppContext.jsx`)
+- Cart now tracks objects `{ item, qty }` with proper quantity management
+- `addToCart`, `removeFromCart`, `updateQty`, `clearCart`
+- `cartItems`, `cartCount`, `cartTotal` derived values
+- `addBooking` — wires BookingPage form → admin Bookings table
+- `addOrder` — wires CartDrawer checkout → admin Orders table
+- `adminLogin` / `adminLogout` — persistent via localStorage
+- All state persisted to localStorage (survives page refresh)
+
+### 5. Footer Fix
+- Admin Login link added to copyright bar
+- All navigation links route correctly via context
+
+### 6. MenuPage Upgrade (`src/pages/MenuPage.jsx`)
+- "Add to Cart" opens the cart drawer immediately
+- "X in cart" badge shows current quantity per item
+- Animated ✓ feedback on add
+- Cart shortcut button in header when items are in cart
+
+### 7. BookingPage Upgrade
+- Form submission now calls `addBooking()` → appears in Admin → Bookings table instantly
+
+---
+
+## 🔑 Admin Access
+
+```
+URL:      Click "Admin Login" in the footer
+Username: admin
+Password: spice2024
+```

@@ -105,9 +105,16 @@ export default function Footer() {
           <p style={{ fontFamily: "var(--sans)", fontSize: 11.5, color: "var(--muted)" }}>
             © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
           </p>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 11.5, color: "var(--muted)" }}>
-            Crafted with care · {SITE_CONFIG.location}, India
-          </p>
+          <div style={{ display:"flex", gap:24, alignItems:"center" }}>
+            <button onClick={() => navigate("AdminLogin")} style={{ background:"none", border:"none", cursor:"pointer", fontFamily:"var(--sans)", fontSize:11, color:"var(--dim)", transition:"color .25s", letterSpacing:"0.05em" }}
+              onMouseEnter={(e) => (e.target.style.color="var(--muted)")}
+              onMouseLeave={(e) => (e.target.style.color="var(--dim)")}>
+              Admin Login
+            </button>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 11.5, color: "var(--muted)" }}>
+              Crafted with care · {SITE_CONFIG.location}, India
+            </p>
+          </div>
         </div>
       </div>
     </footer>
