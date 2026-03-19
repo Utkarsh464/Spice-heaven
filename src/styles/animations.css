@@ -1,0 +1,143 @@
+/* ============================================================
+   SPICE HAVEN — Animation System
+   ============================================================ */
+
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes panSlow {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(0.95); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes waBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25%       { transform: scale(1.12) rotate(-5deg); }
+  75%       { transform: scale(1.08) rotate(3deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(200, 160, 90, 0.2); }
+  50%       { box-shadow: 0 0 40px rgba(200, 160, 90, 0.45), 0 0 80px rgba(200, 160, 90, 0.12); }
+}
+
+@keyframes loadSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loadFadeOut {
+  0%   { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: scale(1.04); }
+}
+
+/* ── Scroll Reveal Classes ── */
+.rv {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+}
+.rv.up { opacity: 1; transform: translateY(0); }
+
+.rv-l {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+}
+.rv-l.up { opacity: 1; transform: translateX(0); }
+
+.rv-r {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+}
+.rv-r.up { opacity: 1; transform: translateX(0); }
+
+/* ── Stagger Delays ── */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* ── Utility Animation Classes ── */
+.img-zoom img {
+  transition: transform 0.75s var(--ease);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+.card-lift {
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease);
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.btn-scale {
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s var(--ease);
+}
+.btn-scale:hover  { transform: translateY(-2px) scale(1.02); }
+.btn-scale:active { transform: scale(0.98); }
+
+/* ── Shimmer Text ── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--gold3),
+    var(--gold2),
+    var(--gold),
+    var(--gold2),
+    var(--gold3)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Urgency Dot ── */
+.urgency-dot {
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse 1.8s infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}

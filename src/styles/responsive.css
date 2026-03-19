@@ -1,0 +1,41 @@
+/* ============================================================
+   SPICE HAVEN — Responsive / Media Queries
+   ============================================================ */
+
+/* ── Tablet (≤ 900px) ── */
+@media (max-width: 900px) {
+  .desktop-nav { display: none !important; }
+  .hamburger   { display: flex !important; }
+  .hero-stats  { display: none !important; }
+  .hero-pad    { padding: 0 24px !important; }
+
+  .two-col { grid-template-columns: 1fr !important; }
+  .two-col > div:last-child { padding: 48px 24px !important; }
+
+  .footer-cols { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  footer       { padding: 48px 20px 24px !important; }
+
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  .features-grid   { grid-template-columns: 1fr 1fr !important; }
+  .pillars-grid    { grid-template-columns: 1fr 1fr !important; }
+  .reviews-grid    { grid-template-columns: 1fr !important; }
+  .menu-grid       { grid-template-columns: 1fr !important; }
+  .featured-grid   { grid-template-columns: 1fr !important; }
+  .dash-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+  .book-grid { grid-template-columns: 1fr !important; }
+  .booking-form { padding: 28px 18px !important; }
+  .menu-item-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Small Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  .footer-cols  { grid-template-columns: 1fr !important; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .features-grid { grid-template-columns: 1fr !important; }
+  .pillars-grid  { grid-template-columns: 1fr !important; }
+}

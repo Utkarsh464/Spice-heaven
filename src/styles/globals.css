@@ -1,0 +1,142 @@
+/* ============================================================
+   SPICE HAVEN — Global Stylesheet
+   Design System: Dark Luxury / Gold Accent
+   ============================================================ */
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Color Palette */
+  --ink: #0a0806;
+  --ink2: #110e09;
+  --ink3: #1a1510;
+  --ink4: #241e16;
+
+  --gold: #c8a05a;
+  --gold2: #e2bf82;
+  --gold3: #a07a3a;
+
+  --cream: #f2e8d5;
+  --cream2: #e8d9bc;
+  --warm: #a8916c;
+  --muted: #6b5c45;
+  --dim: #3d3328;
+
+  --green-wa: #25d366;
+
+  /* Typography */
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Jost", system-ui, sans-serif;
+
+  /* Easing */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 120px;
+
+  /* Border radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Shadows */
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 12px 32px rgba(200, 160, 90, 0.28);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold3);
+  border-radius: 2px;
+}
+
+/* ── Focus ── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ── Links ── */
+a {
+  color: inherit;
+}
+
+/* ── Images ── */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Inputs ── */
+input,
+select,
+textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 160, 90, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+  background: rgba(200, 160, 90, 0.06);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+select option {
+  background: var(--ink3);
+  color: var(--cream);
+}
