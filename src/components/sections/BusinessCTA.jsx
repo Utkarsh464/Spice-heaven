@@ -1,7 +1,6 @@
 import Tag from "../ui/Tag";
 import IGButton from "../ui/IGButton";
 import { ig, openIGDM } from "../../utils/instagram";
-import { triggerIGToast } from "../ui/IGToast";
 import { SITE_CONFIG } from "../../constants/config";
 
 const FEATURES = [
@@ -47,7 +46,7 @@ export default function BusinessCTA() {
           </span>
           <div style={{ marginLeft:"auto" }}>
             <a href={ig.claimSlot()} target="_blank" rel="noreferrer"
-              onClick={(e) => { e.preventDefault(); openIGDM("claimSlot"); triggerIGToast(); }}
+              onClick={(e) => { e.preventDefault(); openIGDM("claimSlot"); }}
               style={{ display:"inline-flex", alignItems:"center", gap:7, fontFamily:"var(--sans)", fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--gold)", textDecoration:"none", border:"1px solid rgba(200,160,90,.3)", padding:"8px 20px", transition:"background .3s" }}
               onMouseEnter={e=>e.currentTarget.style.background="rgba(200,160,90,.1)"}
               onMouseLeave={e=>e.currentTarget.style.background="transparent"}>

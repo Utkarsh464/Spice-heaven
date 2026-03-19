@@ -1,7 +1,6 @@
 import { useApp } from "../../context/AppContext";
 import { formatPrice } from "../../utils/helpers";
 import { ig, DM_HINT, IG_HANDLE, openIGDM } from "../../utils/instagram";
-import { triggerIGToast } from "../ui/IGToast";
 
 const Icon = ({ d, size=18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -33,7 +32,6 @@ export default function CartDrawer() {
       "Instagram"
     );
     openIGDM("placeOrder");
-    triggerIGToast();
     clearCart();
     setCartOpen(false);
   };

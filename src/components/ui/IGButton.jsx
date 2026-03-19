@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { openIGDM } from "../../utils/instagram";
-import { triggerIGToast } from "./IGToast";
 
 /**
  * IGButton — Instagram-branded CTA button.
@@ -68,7 +67,6 @@ export default function IGButton({
   const handleClick = (e) => {
     e.preventDefault();
     openIGDM(messageKey);
-    triggerIGToast();
   };
 
   return (

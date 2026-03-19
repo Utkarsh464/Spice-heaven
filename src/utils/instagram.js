@@ -1,82 +1,59 @@
 /**
  * Instagram Lead-Gen Utilities
- * All CTAs funnel visitors to @webgrowth.in on Instagram.
+ * Primary channel: @webgrowth.in
  *
- * How pre-typed text works:
- * Instagram does NOT support ?text= in URLs like WhatsApp does.
- * Our approach:
- *   1. Silently copy the message to clipboard
- *   2. Open Instagram DM in a new tab
- *   3. User just pastes (Ctrl+V / long-press Paste) — zero friction
- *
- * This is the industry-standard workaround used by IG lead-gen tools.
+ * Pre-filled text trick:
+ * instagram.com/direct/new/?text=<encoded> opens the DM composer
+ * with the message already typed in — user just hits Send.
  */
 
 const HANDLE  = "webgrowth.in";
-const DM_URL  = `https://ig.me/m/${HANDLE}`;
 const PROFILE = `https://instagram.com/${HANDLE}`;
 
 export const IG_HANDLE  = HANDLE;
 export const IG_PROFILE = PROFILE;
-export const IG_DM      = DM_URL;
 
-// ─── Pre-typed messages ───────────────────────────────────────────────────────
+// ─── The message that gets pre-typed ─────────────────────────────────────────
+const SITE_LINK = "https://spice-heaven-seven.vercel.app/";
+
 export const MESSAGES = {
-  getWebsite:  "Hi! I want a website like this for my business 🙌",
-  placeOrder:  "Hi! I'd like to order a website like this. Can we talk? 🙌",
-  bookTable:   "Hi! I want to book a table at Spice Haven. Please help 🙏",
-  requestDemo: "Hi! I'd like to see a live demo of this website 👀",
-  adminPanel:  "Hi! I'm interested in getting a website with an admin panel 📊",
-  claimSlot:   "Hi! I want to claim a slot for a premium website this month ⚡",
-  general:     "Hi! I found your page and I'm interested. Let's connect! 🔥",
+  getWebsite:  `Hey I want a website for my business like this ${SITE_LINK}`,
+  placeOrder:  `Hey I want a website for my business like this ${SITE_LINK}`,
+  bookTable:   `Hey I want a website for my business like this ${SITE_LINK}`,
+  requestDemo: `Hey I want a website for my business like this ${SITE_LINK}`,
+  adminPanel:  `Hey I want a website for my business like this ${SITE_LINK}`,
+  claimSlot:   `Hey I want a website for my business like this ${SITE_LINK}`,
+  general:     `Hey I want a website for my business like this ${SITE_LINK}`,
 };
 
-// ─── Core helper ─────────────────────────────────────────────────────────────
+// ─── URL builder — text pre-filled in Instagram DM composer ──────────────────
+const dmUrl = (messageKey = "general") => {
+  const text = MESSAGES[messageKey] || MESSAGES.general;
+  return `https://www.instagram.com/direct/new/?text=${encodeURIComponent(text)}`;
+};
+
+// ─── openIGDM ─────────────────────────────────────────────────────────────────
 /**
- * openIGDM(messageKey)
- * 1. Copies the pre-typed message to clipboard silently
- * 2. Opens Instagram DM
- * 3. Shows a brief toast so the user knows to paste
- *
- * @param {keyof typeof MESSAGES} messageKey
+ * Opens Instagram DM composer with the message already typed.
+ * User just presses Send — zero effort.
  */
 export function openIGDM(messageKey = "general") {
-  const text = MESSAGES[messageKey] || MESSAGES.general;
-
-  // Copy to clipboard (works in all modern browsers)
-  try {
-    navigator.clipboard.writeText(text).catch(() => {
-      // Fallback for older browsers
-      const el = document.createElement("textarea");
-      el.value = text;
-      el.style.cssText = "position:fixed;opacity:0;top:0;left:0;";
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-    });
-  } catch (_) { /* clipboard unavailable — still open IG */ }
-
-  // Small delay so clipboard is ready before IG opens
-  setTimeout(() => {
-    window.open(DM_URL, "_blank", "noreferrer");
-  }, 80);
+  window.open(dmUrl(messageKey), "_blank", "noreferrer");
 }
 
-// ─── URL getters (for <a href> usage) ────────────────────────────────────────
-// These are plain href values — use openIGDM() for buttons where you want
-// clipboard copy. For <a> tags, onClick also calls openIGDM then prevents default.
+// ─── ig.* URL helpers (for href= attributes) ──────────────────────────────────
 export const ig = {
-  dm:          () => DM_URL,
+  dm:          () => dmUrl("general"),
   profile:     () => PROFILE,
-  getWebsite:  () => DM_URL,
-  bookTable:   () => DM_URL,
-  requestDemo: () => DM_URL,
-  adminPanel:  () => DM_URL,
-  placeOrder:  () => DM_URL,
-  claimSlot:   () => DM_URL,
-  general:     () => DM_URL,
+  getWebsite:  () => dmUrl("getWebsite"),
+  bookTable:   () => dmUrl("bookTable"),
+  requestDemo: () => dmUrl("requestDemo"),
+  adminPanel:  () => dmUrl("adminPanel"),
+  placeOrder:  () => dmUrl("placeOrder"),
+  claimSlot:   () => dmUrl("claimSlot"),
+  general:     () => dmUrl("general"),
 };
 
 // Legacy alias
 export const DM_HINT = MESSAGES;
+export const IG_DM   = dmUrl("general");

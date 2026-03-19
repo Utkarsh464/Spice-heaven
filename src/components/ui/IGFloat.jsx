@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { openIGDM } from "../../utils/instagram";
-import { triggerIGToast } from "./IGToast";
 
 /**
  * IGFloat — Fixed floating Instagram DM button (bottom-right).
@@ -23,7 +22,6 @@ export default function IGFloat() {
   const handleClick = (e) => {
     e.preventDefault();
     openIGDM("getWebsite");
-    triggerIGToast();
   };
 
   return (
