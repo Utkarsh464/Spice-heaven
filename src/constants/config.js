@@ -23,33 +23,20 @@ export const SITE_CONFIG = {
   whatsappNumber: "919528073932",
 
   // Social
-  instagram: "https://instagram.com/spicehaven",
+  instagram: "https://instagram.com/webgrowth.in",
   facebook: "https://facebook.com/spicehaven",
   twitter: "https://x.com/spicehaven",
   youtube: "https://youtube.com/spicehaven",
+
+  // Lead generation — primary channel
+  instagramHandle: "webgrowth.in",
+  instagramUrl: "https://instagram.com/webgrowth.in",
+  instagramDM: "https://ig.me/m/webgrowth.in",
 
   // Business / Sales demo
   startingPrice: "₹15,000",
   deliveryDays: "7–10",
   maxClientsPerMonth: 4,
-};
-
-/** WhatsApp pre-filled message URLs */
-export const WA_MESSAGES = {
-  bookTable: (num) =>
-    `https://wa.me/${num}?text=Hi%20Spice%20Haven!%20I'd%20like%20to%20book%20a%20table.`,
-  placeOrder: (num) =>
-    `https://wa.me/${num}?text=Hi!%20I'd%20like%20to%20place%20an%20order.`,
-  orderItem: (num, item, price) =>
-    `https://wa.me/${num}?text=Hi!%20I'd%20like%20to%20order%20${encodeURIComponent(item)}%20(₹${price}).`,
-  cartOrder: (num, items) =>
-    `https://wa.me/${num}?text=Hi!%20I'd%20like%20to%20order:%20${encodeURIComponent(items.join(", "))}`,
-  getWebsite: (num) =>
-    `https://wa.me/${num}?text=Hi!%20I%20own%20a%20restaurant%20and%20want%20a%20website%20like%20Spice%20Haven.`,
-  requestDemo: (num) =>
-    `https://wa.me/${num}?text=I%20want%20to%20see%20a%20live%20demo%20of%20the%20restaurant%20website.`,
-  adminPanel: (num) =>
-    `https://wa.me/${num}?text=I'm%20interested%20in%20getting%20a%20restaurant%20website%20with%20admin%20panel.`,
 };
 
 /** Booking time slots */

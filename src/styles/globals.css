@@ -43,7 +43,8 @@
   --radius-sm: 2px;
   --radius-md: 4px;
 
-  /* Shadows */
+  /* Instagram lead strip height offset */
+  --strip-h: 36px;
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-elevated: 0 24px 60px rgba(0, 0, 0, 0.5);
   --shadow-gold: 0 12px 32px rgba(200, 160, 90, 0.28);

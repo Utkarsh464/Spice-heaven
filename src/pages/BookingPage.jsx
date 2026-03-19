@@ -4,10 +4,10 @@ import { useApp } from "../context/AppContext";
 import Tag from "../components/ui/Tag";
 import GoldRule from "../components/ui/GoldRule";
 import Btn from "../components/ui/Btn";
-import WAButton from "../components/ui/WAButton";
+import IGButton from "../components/ui/IGButton";
 import { IMAGES as I } from "../constants/images";
 import { TIME_SLOTS, OCCASIONS } from "../constants/config";
-import { wa } from "../utils/whatsapp";
+import { ig } from "../utils/instagram";
 
 const EMPTY_FORM = { name: "", email: "", phone: "", date: "", time: "", guests: "2", occasion: "", notes: "" };
 
@@ -54,7 +54,9 @@ export default function BookingPage() {
           <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--muted)", maxWidth: 480, margin: "0 auto 20px" }}>
             Reserve in minutes. We confirm within 2 hours with a personal message.
           </p>
-          <WAButton href={wa.bookTable()}>Or Book via WhatsApp</WAButton>
+          <IGButton href={ig.bookTable()} size="sm" variant="outline" hint="Contact via Instagram to get your website">
+            Or DM us on Instagram
+          </IGButton>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import Tag from "../ui/Tag";
 import Btn from "../ui/Btn";
-import { wa } from "../../utils/whatsapp";
+import { ig } from "../../utils/instagram";
 
 const STATS = [
   { label: "Today's Bookings",  value: "24",    trend: "+8%",  icon: "📅" },
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
             </div>
 
             <div className="rv d5">
-              <Btn href={wa.adminPanel()} style={{ padding: "16px 48px" }}>Get This Dashboard →</Btn>
+              <Btn href={ig.adminPanel()} style={{ padding: "16px 48px" }}>Get This Dashboard →</Btn>
             </div>
           </div>
 

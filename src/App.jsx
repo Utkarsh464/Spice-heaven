@@ -10,7 +10,8 @@ import CartDrawer from "./components/cart/CartDrawer";
 
 // UI
 import LoadingScreen from "./components/ui/LoadingScreen";
-import WAFloat       from "./components/ui/WAFloat";
+import IGFloat       from "./components/ui/IGFloat";
+import IGLeadStrip   from "./components/ui/IGLeadStrip";
 
 // Public pages
 import HomePage     from "./pages/HomePage";
@@ -67,11 +68,12 @@ function AppInner() {
   return (
     <>
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
+      <IGLeadStrip />
       <Navbar />
       <CartDrawer />
       <main><Page /></main>
       <Footer />
-      <WAFloat />
+      <IGFloat />
     </>
   );
 }
